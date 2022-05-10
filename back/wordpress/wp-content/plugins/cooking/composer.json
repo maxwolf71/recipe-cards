@@ -1,0 +1,10 @@
+{
+    "autoload": {
+        "psr-4" : {
+            "cooking\\" : "./class"
+        }
+    },
+    "config": {
+        "vendor-dir": "vendor-cooking"
+    }
+}

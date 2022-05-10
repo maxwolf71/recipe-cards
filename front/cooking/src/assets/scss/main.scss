@@ -1,0 +1,41 @@
+$border-radius: 2rem;
+$borderStyle: 1px solid #555;
+$color-light-green: #eef3ed;
+$gutter: 1rem;
+$shadow: 0 3px 3px #0005;
+$light-blue: lightblue;
+
+
+#app {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card {
+    border: 1px solid black;
+    border-radius: $border-radius;
+    overflow: hidden;
+    background-color: $color-light-green;
+    margin: $gutter;
+    box-shadow: $shadow;
+
+    .image-container {
+        overflow: hidden;
+    }
+
+    img {
+        width: 100%;
+        display: block;
+    }
+
+    &__content  {
+        padding: $gutter $gutter*2;
+        list-style: none;
+    }
+}
+
+li, a {
+    list-style: none;
+    text-decoration: none;
+}
