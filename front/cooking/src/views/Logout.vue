@@ -21,6 +21,6 @@ section {
   border: $borderStyle;
   border-radius: $border-radius;
   padding: $gutter;
-  margin: $gutter;
+  margin: 5rem;
 }
 </style>

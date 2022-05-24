@@ -1,13 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import RecipeList from '../views/RecipeList.vue'
-import Recipe from '../views/Recipe.vue'
 import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Profile from '../views/Profile.vue'
 import Register from '../views/Register.vue'
 import RegisterSuccess from '../views/RegisterSuccess.vue'
+
+import RecipeList from '../views/RecipeList.vue'
+import Recipe from '../views/Recipe.vue'
 import RecipeCreate from '../views/RecipeCreate.vue'
 import RecipeCreateSuccess from '../views/RecipeCreateSuccess.vue'
 

@@ -41,14 +41,12 @@ export default {
 @import "../assets/scss/main.scss";
 header {
     position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
+    z-index: 1;
     background-color: $light-blue;;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin-bottom: $gutter;
     padding: $gutter;
 }
 </style>
