@@ -43,8 +43,15 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "../assets/scss/main.scss";
 section {
   margin: 100px auto;
+
+  h1 {
+    margin-bottom: 20px;
+    color: #6200ea;
+    font-size: 2rem;
+  }
 }
 </style>

@@ -25,8 +25,18 @@ export default {
             // if invalid token -> back to home page
             this.$router.push('login');
         } else {
-            this.isUserConnected = true;        
+            this.isUserConnected = true;   
+            console.log('Ok');     
         }
     }
 }
 </script>
+
+<style lang="scss" scoped>
+@import "../assets/scss/main.scss";
+
+section {
+    margin-top: 10rem;
+}
+
+</style>

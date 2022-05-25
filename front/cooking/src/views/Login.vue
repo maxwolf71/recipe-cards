@@ -1,7 +1,6 @@
 <template>
   <section>
     <form @submit="checkInputs">
-      <h1>Se connecter</h1>
       <Label>
         Login
         <input v-model="login" name="login"
@@ -66,23 +65,39 @@ export default {
 
 <style lang="scss" scoped>
 @import "../assets/scss/main.scss";
+
 form {
   background-color: lightblue;
   box-shadow: 8px 8px 12px #aaa;
   display: flex;
-  flex-direction: column;
+  flex-flow: column wrap;
   align-items: center;
-  border: $borderStyle;
   border-radius: $border-radius;
   padding: $gutter;
-  margin: 5rem;
+  margin: 5rem auto;
+  width: 450px;
 
   label {
-    margin-bottom: $gutter;
+    color: #1976d2;
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+  
+    input {
+      border: 1px solid white;
+      border-radius: 15px;
+      margin-bottom: 15px;
+      margin-left: 15px;
+      padding: 5px;
+    }
   }
   button {
+    color: $dark-blue;
     border-radius: 10px;
     width: 40%;
+    background-color: white;
+    margin-top: 40px;
+    padding: $gutter;
   }
 }
 </style>

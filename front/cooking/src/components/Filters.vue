@@ -57,3 +57,15 @@ export default {
 };
 </script>
 
+<style lang="scss" scoped>
+@import "../assets/scss/main.scss";
+
+select {
+  color: white;
+  background-color: #6200ea;
+  border-radius: 15px;
+  margin-right: 10px;
+  padding: 5px;
+}
+
+</style>

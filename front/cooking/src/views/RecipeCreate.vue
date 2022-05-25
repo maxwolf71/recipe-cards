@@ -7,8 +7,8 @@
       </div>
 
       <div>
-        <label> 
-          Image d'illustration <input type="file" @change="uploadImage" /> 
+        <label>
+          Image d'illustration <input type="file" @change="uploadImage" />
           <img v-if="image" :src="image" />
           <input v-model="imageId" type="hidden" />
         </label>
@@ -16,7 +16,15 @@
 
       <div>
         <div v-for="type in types" :key="type.id">
-          <label> <input type="radio" name="type" :value="type.id" v-model="selectedType" /> {{ type.name }} </label>
+          <label>
+            <input
+              type="radio"
+              name="type"
+              :value="type.id"
+              v-model="selectedType"
+            />
+            {{ type.name }}
+          </label>
         </div>
       </div>
 
@@ -28,19 +36,25 @@
 
       <div>
         <div v-for="ingredient in ingredients" :key="ingredient.id">
-          <label> <input type="checkbox" :value="ingredient.id" v-model="selectedIngredients" /> {{ ingredient.name }} </label>
+          <label>
+            <input
+              type="checkbox"
+              :value="ingredient.id"
+              v-model="selectedIngredients"
+            />
+            {{ ingredient.name }}
+          </label>
         </div>
       </div>
 
       <div>
-          <button>Enregistrer</button>
+        <button>Enregistrer</button>
       </div>
     </form>
   </section>
 </template>
 
 <script>
-
 import userService from "../services/userService";
 
 export default {
@@ -56,7 +70,7 @@ export default {
       selectedIngredients: [],
       createFail: false,
       image: null,
-      imageId: null
+      imageId: null,
     };
   },
   async created() {
@@ -72,44 +86,75 @@ export default {
   },
   methods: {
     async loadIngredients() {
-      this.ingredients = await this.$store.state.services.recipe.loadRecipeIngredients();
+      this.ingredients =
+        await this.$store.state.services.recipe.loadRecipeIngredients();
     },
     async loadType() {
       this.types = await this.$store.state.services.recipe.loadRecipeTypes();
     },
     async saveRecipe(event) {
-        event.preventDefault();
-        const result = await this.$store.state.services.recipe.saveRecipe(
-            this.title,
-            this.selectedType,
-            this.description,
-            this.selectedIngredients,
-            this.imageId
-        );
+      event.preventDefault();
+      const result = await this.$store.state.services.recipe.saveRecipe(
+        this.title,
+        this.selectedType,
+        this.description,
+        this.selectedIngredients,
+        this.imageId
+      );
 
-        if(result) {
-          this.$router.push('recipe-create-success')
-        }
-        else {
-          this.createFail = true
-        }
+      if (result) {
+        this.$router.push("recipe-create-success");
+      } else {
+        this.createFail = true;
+      }
     },
     async uploadImage(event) {
       event.preventDefault();
 
       const image = event.currentTarget.files[0];
 
-      let imageResult = await this.$store.state.services.recipe.uploadImage(image);
+      let imageResult = await this.$store.state.services.recipe.uploadImage(
+        image
+      );
 
-      this.image = imageResult.image.url
-      this.imageId = imageResult.image.id
-    }
-  }
+      this.image = imageResult.image.url;
+      this.imageId = imageResult.image.id;
+    },
+  },
 };
 </script>
 
-<style>
-img {
-  width: 10rem;
+<style lang="scss" scoped>
+@import "../assets/scss/main.scss";
+
+section {
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+
+  img {
+    width: 5rem;
+  }
+
+  label {
+    color: #1976d2;
+    width: 70%;
+  
+    input {
+      border: 1px solid $light-blue;
+      border-radius: 15px;
+      margin-bottom: 15px;
+      margin-left: 15px;
+      padding: 5px;
+    }
+  }
 }
+button {
+    color: $dark-blue;
+    border-radius: 10px;
+    width: 40%;
+    background-color: $light-blue;
+    margin-top: 20px;
+    padding: $gutter;
+  }
 </style>
