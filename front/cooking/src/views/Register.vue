@@ -104,7 +104,8 @@ form {
   align-items: center;
   border-radius: $border-radius;
   padding: $gutter;
-  margin: 5rem;
+  margin: 5rem auto;
+  width: 550px;
 
   label {
     color: #1976d2;

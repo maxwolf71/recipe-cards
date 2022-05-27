@@ -2,7 +2,7 @@
     <section v-if="isUserConnected">
         <h1>Profile</h1>
         <div>
-            User info
+            {{ user.user_display_name }}
         </div>
     </section>
 </template>
@@ -11,22 +11,23 @@
 import userService from '../services/userService'
 
 export default {
+    name: 'ProfileView',
+    computed: {
+        user() {
+            return this.$store.state.user;
+        }
+    },
     data() {
         return {
             isUserConnected: false
         }
     },
-
-    name: 'ProfileView',
-    
     async created() {
         const isTokenValid = await userService.isLoggedIn();
         if(!isTokenValid) {
-            // if invalid token -> back to home page
-            this.$router.push('login');
+            this.$router.push('login'); // if invalid token -> back to home page
         } else {
-            this.isUserConnected = true;   
-            console.log('Ok');     
+            this.isUserConnected = true;
         }
     }
 }
@@ -37,6 +38,12 @@ export default {
 
 section {
     margin-top: 10rem;
+    h1 {
+        font-size: 2rem;
+    }
+    div {
+        font-size: 2.5rem;
+    }
 }
 
 </style>
