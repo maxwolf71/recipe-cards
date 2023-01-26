@@ -4,7 +4,7 @@
     <v-card-title>{{ recipe.title.rendered }}</v-card-title>
     <v-card-text>
       <div class="my-4 text-subtitle-1">
-        {{ recipe._embedded["wp:term"][1][0].name }}
+        {{ recipe._embedded["wp:term"][0].name }}
       </div>
 
       <div v-html="recipe.excerpt.rendered"></div>

@@ -4,9 +4,9 @@ Contributors: tmeister
 Donate link: https://www.paypal.me/wpchavez
 Tags: wp-json, jwt, json web authentication, wp-api
 Requires at least: 4.2
-Tested up to: 5.6.1
-Requires PHP: 5.3.0
-Stable tag: 1.2.6
+Tested up to: 6.0.3
+Requires PHP: 7.4.0
+Stable tag: 1.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -321,6 +321,30 @@ $data = array(
 );
 `
 
+### jwt_auth_algorithm
+The **jwt_auth_algorithm** allows you to modify the signing algorithm.
+
+Default value:
+
+`
+<?php
+$token = JWT::encode(
+    apply_filters('jwt_auth_token_before_sign', $token, $user),
+    $secret_key,
+    apply_filters('jwt_auth_algorithm', 'HS256')
+);
+
+// ...
+
+$token = JWT::decode(
+    $token,
+    new Key($secret_key, apply_filters('jwt_auth_algorithm', 'HS256'))
+);
+`
+
+## Testing
+I've created a small app to test the basic functionality of the plugin; you can get the app and read all the details on the [JWT-Client Repo](https://github.com/Tmeister/jwt-client)
+
 ==Installation==
 
 = Using The WordPress Dashboard =
@@ -341,6 +365,24 @@ $data = array(
 ###Please read how to configured the plugin https://wordpress.org/plugins/jwt-authentication-for-wp-rest-api/
 
 == Changelog ==
+= 1.3.2 =
+* Fix conflicts with other plugins using the same JWT library adding a wrapper namespace to the JWT class.
+
+= 1.3.1 =
+* Updating the minimum version of PHP to 7.4
+* Validate the signing algorithm against the supported algorithms @see https://www.rfc-editor.org/rfc/rfc7518#section-3
+* Sanitize the REQUEST_URI and HTTP_AUTHORIZATION values before to use them
+* Use get_header() instead of $_SERVER to get the Authorization header when possible
+* Added typed properties to the JWT_Auth class where possible
+* Along with this release, I release a new simple JWT Client App for testing purposes @see https://github.com/Tmeister/jwt-client
+
+= 1.3.0 =
+* Update firebase/php-jwt to 6.3
+* Fix warning, register_rest_route was called incorrectly
+* Allow for Basic Auth, by not attempting to validate Authentication Headers if a valid user has already been determined (see: https://github.com/Tmeister/wp-api-jwt-auth/issues/241)
+* Added a new filter (jwt_auth_algorithm) to allow for customizing the algorithm used for signing the token
+* Props: https://github.com/bradmkjr
+
 = 1.2.6 =
 * Cookies && Token compatibility
 * Fix the root problem with gutenberg infinite loops and allow the token validation/generation if the WP cookie exists.
